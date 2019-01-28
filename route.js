@@ -1,8 +1,10 @@
+const Joi = require('joi');
 
-//var soil = {};
-
+   // Grab the http app methods and create and hanlde the request and exceptions.
+const express = require('express');
+const route = express();
  // Post : are writes from the user posting to the server. 
-app.get('/api/soil/:soil',(req,res) =>{
+ route.get('/api/soil/:soil',(req,res) =>{
 
     
        // Make sure (validate that there is a name field in the body)
@@ -30,7 +32,7 @@ app.get('/api/soil/:soil',(req,res) =>{
 // Get (provide the user with the genre wanted), update(push), add (post), delete (delete)
 
 // All them to see all of the genres
-app.get('/api/genres',(req,res) =>{
+route.get('/api/genres',(req,res) =>{
     // Respond with the genres
    res.send(genres);
 });
@@ -38,7 +40,7 @@ app.get('/api/genres',(req,res) =>{
 
 // Should also be able to the get the list of genres
 // send back the genre for a given id
-app.get('/api/genres/:id',(req,res) =>{
+route.get('/api/genres/:id',(req,res) =>{
    
    const id = req.params.id;
    console.log(req.params.id);
@@ -65,7 +67,7 @@ app.get('/api/genres/:id',(req,res) =>{
 
 
    // Post : are writes from the user posting to the server. 
-app.post('/api/genres',(req,res) =>{
+route.post('/api/genres',(req,res) =>{
 
        // Add genre
    const genre = {
@@ -93,7 +95,7 @@ app.post('/api/genres',(req,res) =>{
 });
 
 
-app.delete('/api/genres/:id',(req,res) =>{
+route.delete('/api/genres/:id',(req,res) =>{
    console.log(req.params.id);
    // Handle error if the genre isnt there
    const result = validateId(req.params.id);
@@ -122,7 +124,7 @@ app.delete('/api/genres/:id',(req,res) =>{
 });
 
    // This can be used to update a specific genre
-app.put('/api/genres/:id',(req, res) =>{
+route.put('/api/genres/:id',(req, res) =>{
        // Find the genre in our array
    const genre = genres.find(c => c.id === parseInt(req.params.id));
    console.log(genre);

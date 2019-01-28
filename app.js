@@ -17,4 +17,4 @@ app.listen(port,()=> console.log(`listening on Port ${port}...`));
     // Added Json parsing -> adding middleware, app.use allows it to be used in the request processing
 app.use(express.json());
 
-app.use('./route');
+app.use(require('./route'));
