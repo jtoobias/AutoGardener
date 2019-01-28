@@ -9,7 +9,7 @@ const app = express();
 
    // This is done using the process object
    // The Environment PORT can be set in terminal, $env:PORT=... 
-const port = process.env.port || 3000;
+const port = process.env.port || 80;
    // Use back tick ` (below esc) for value inputs in string
 app.listen(port,()=> console.log(`listening on Port ${port}...`));
 
