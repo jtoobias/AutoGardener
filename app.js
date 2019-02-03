@@ -18,6 +18,14 @@ app.listen(port,()=> console.log(`listening on Port ${port}...`));
 //app.use(express.json());
 //console.log(1);
 app.use(routes);
+
+// EXPRESS middle-ware
+   // This allows body data to be sent through the url and by setting extended to true allows for complex types like objects and arrays.
+   // e.g. /api/soil=value&field=id
+app.use(express.urlencoded({extended: true}));
+   // Use a local folder called public. This means if we go /api/(a file in public)e.g. file.txt so /api/file.txt - it will show the content of file.txt
+   // This can hold our CSS (frontend stuff) and images aswell
+app.use(express.static('./public'));   
 /*
 const server = http.createServer((req,res) => {
    if(req.url === 'api/soil/'){

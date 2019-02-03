@@ -1,0 +1,1 @@
+_**This is a test to show what express.static can do**_
