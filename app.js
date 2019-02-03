@@ -7,15 +7,25 @@
 const express = require('express');
 const app = express();
 const routes = require('./route');
-
+const http = require('http');
    // This is done using the process object
    // The Environment PORT can be set in terminal, $env:PORT=... 
 const port = process.env.port || 3000;
    // Use back tick ` (below esc) for value inputs in string
 app.listen(port,()=> console.log(`listening on Port ${port}...`));
 
-
     // Added Json parsing -> adding middleware, app.use allows it to be used in the request processing
 //app.use(express.json());
 //console.log(1);
 app.use(routes);
+/*
+const server = http.createServer((req,res) => {
+   if(req.url === 'api/soil/'){
+      console.log('5');
+      res.end();
+   }
+});
+
+server.listen(3000);
+
+console.log('listening on port 3000...');*/
