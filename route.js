@@ -3,13 +3,28 @@ const Joi = require('joi');
    // Grab the http app methods and create and hanlde the request and exceptions.
 const express = require('express');
 const route = express();
- // Post : are writes from the user posting to the server. 
- route.get('/api/soil/:soil',(req,res) =>{
+let amount_of_packets = 0;
 
-   const soil = req.params.soil;
+const soil_sensors = [
+    {id: 1, value: 0},
+    {id: 2, value: 0},
+    {id: 3, value: 0},
+];
+
+route.all('/',(req,res, next) =>{
+   amount_of_packets++;
+   console.log('all');
+   next();
+});
+
+ // get : Get info from the server. 
+ route.get('/api/soil_sensors',(req,res) =>{
+    const id = req.query.id
+    const moisture = req.query.moisture;
+   //const len = Buffer.from(soil);
        // Make sure (validate that there is a name field in the body)
    //const result = validateSoil(soil);
-    console.log(soil);   
+    console.log(`Moisture: ${moisture} - ID: ${id}`);   
    // Log result
   /* console.log(result);
    if(result.error){
@@ -25,13 +40,16 @@ const route = express();
  
    // push into the array
   // genres.push(genre);
-   res.send(soil);  
+   res.send(`+IPD,${amount_of_packets}:${moisture}`);  
 });
 
 // Post : are writes from the user posting to the server. 
-route.post('/api/soil/:soil',(req,res) =>{
+route.post('/api/soil/',(req,res) =>{
 
-    const soil = req.params.soil;
+    const soil = req.params;
+    
+
+
         // Make sure (validate that there is a name field in the body)
     //const result = validateSoil(soil);
      console.log(soil);   
@@ -50,7 +68,8 @@ route.post('/api/soil/:soil',(req,res) =>{
   
     // push into the array
    // genres.push(genre);
-    res.send(soil);  
+    
+   res.send(`+IPD,${amount_of_packets}:${soil}`);  
  });
 
 
